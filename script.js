@@ -267,9 +267,9 @@ class Book {
   logInBtn.onclick = signIn
   logOutBtn.onclick = signOut
   
-  // Firestore
+  // FireStore
   
-  const db = firebase.firestore()
+  const db = firebase.fireStore()
   let unsubscribe
   
   const setupRealTimeListener = () => {
@@ -333,6 +333,6 @@ class Book {
       author: book.author,
       pages: book.pages,
       isRead: book.isRead,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: firebase.fireStore.FieldValue.serverTimestamp(),
     }
   }
