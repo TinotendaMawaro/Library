@@ -13,8 +13,7 @@ class Book {
       this.isRead = isRead
     }
   }
-
-
+  
   class Library {
     constructor() {
       this.books = []
@@ -25,38 +24,37 @@ class Book {
         this.books.push(newBook)
       }
     }
-
+  
     removeBook(title) {
-        this.books = this.books.filter((book) => book.title !== title)
-      }
-    
-      getBook(title) {
-        return this.books.find((book) => book.title === title)
-      }
-    
-      isInLibrary(newBook) {
-        return this.books.some((book) => book.title === newBook.title)
-      }
+      this.books = this.books.filter((book) => book.title !== title)
     }
-
-    const library = new Library()
-
-    // User Interface
-
-const accountBtn = document.getElementById('accountBtn')
-const accountModal = document.getElementById('accountModal')
-const addBookBtn = document.getElementById('addBookBtn')
-const addBookModal = document.getElementById('addBookModal')
-const errorMsg = document.getElementById('errorMsg')
-const overlay = document.getElementById('overlay')
-const addBookForm = document.getElementById('addBookForm')
-const booksGrid = document.getElementById('booksGrid')
-const loggedIn = document.getElementById('loggedIn')
-const loggedOut = document.getElementById('loggedOut')
-const loadingRing = document.getElementById('loadingRing')
-
-
-const setupNavbar = (user) => {
+  
+    getBook(title) {
+      return this.books.find((book) => book.title === title)
+    }
+  
+    isInLibrary(newBook) {
+      return this.books.some((book) => book.title === newBook.title)
+    }
+  }
+  
+  const library = new Library()
+  
+  // User Interface
+  
+  const accountBtn = document.getElementById('accountBtn')
+  const accountModal = document.getElementById('accountModal')
+  const addBookBtn = document.getElementById('addBookBtn')
+  const addBookModal = document.getElementById('addBookModal')
+  const errorMsg = document.getElementById('errorMsg')
+  const overlay = document.getElementById('overlay')
+  const addBookForm = document.getElementById('addBookForm')
+  const booksGrid = document.getElementById('booksGrid')
+  const loggedIn = document.getElementById('loggedIn')
+  const loggedOut = document.getElementById('loggedOut')
+  const loadingRing = document.getElementById('loadingRing')
+  
+  const setupNavbar = (user) => {
     if (user) {
       loggedIn.classList.add('active')
       loggedOut.classList.remove('active')
@@ -77,7 +75,6 @@ const setupNavbar = (user) => {
     }
   }
   
-
   const openAddBookModal = () => {
     addBookForm.reset()
     addBookModal.classList.add('active')
@@ -90,7 +87,7 @@ const setupNavbar = (user) => {
     errorMsg.classList.remove('active')
     errorMsg.textContent = ''
   }
-
+  
   const openAccountModal = () => {
     accountModal.classList.add('active')
     overlay.classList.add('active')
@@ -116,7 +113,7 @@ const setupNavbar = (user) => {
       createBookCard(book)
     }
   }
-
+  
   const resetBooksGrid = () => {
     booksGrid.innerHTML = ''
   }
@@ -270,9 +267,9 @@ const setupNavbar = (user) => {
   logInBtn.onclick = signIn
   logOutBtn.onclick = signOut
   
-  // FireStore
+  // Firestore
   
-  const db = firebase.fireStore()
+  const db = firebase.firestore()
   let unsubscribe
   
   const setupRealTimeListener = () => {
@@ -336,8 +333,6 @@ const setupNavbar = (user) => {
       author: book.author,
       pages: book.pages,
       isRead: book.isRead,
-      createdAt: firebase.fireStore.FieldValue.serverTimestamp(),
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     }
   }
-
-  
